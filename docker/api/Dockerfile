@@ -16,7 +16,13 @@ RUN apt update && \
 
 RUN dotnet dev-certs https
 
-RUN dotnet tool install --global dotnet-aspnet-codegenerator && \
-    dotnet tool install --global dotnet-ef && \
-    dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL && \
-    dotnet add package EFCore.NamingConventions
+RUN dotnet tool install --global dotnet-ef && \
+    dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.2 && \
+    dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0 && \
+    dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0 && \
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5.0 && \
+    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0 && \
+    dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL -v 5.0 && \
+    dotnet add package EFCore.NamingConventions -v 5.0
+
+RUN export PATH="$PATH:/root/.dotnet/tools"
