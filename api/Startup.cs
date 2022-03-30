@@ -11,8 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace VehicleQuotes
+namespace api
 {
     public class Startup
     {
@@ -30,8 +31,17 @@ namespace VehicleQuotes
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VehicleQuotes", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vehicle Quotes", Version = "v1" });
             });
+
+            services.AddDbContext<VehicleQuotesContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("VehicleQuotesContext"))
+                    .UseSnakeCaseNamingConvention()
+                    .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                    .EnableSensitiveDataLogging()
+                );
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +51,12 @@ namespace VehicleQuotes
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VehicleQuotes v1"));
+                app.UseSwaggerUI(c => 
+                    {
+                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vehicle Quotes v1");
+                        c.RoutePrefix = "";
+                    }
+                );
             }
 
             app.UseHttpsRedirection();
