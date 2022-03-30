@@ -1,0 +1,8 @@
+.vscode/
+
+# api ignore
+api/bin/
+api/obj/
+
+# client ignore
+client/node_modules/

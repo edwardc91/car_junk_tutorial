@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  api:
+    container_name: car_junker_api
+    build:
+      context: . 
+      dockerfile: docker/api/Dockerfile
+      args:
+        - http_proxy=${HTTP_PROXY}
+        - https_proxy=${HTTPS_PROXY}
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+        - ./api:/project
+        #   - ${SIGIMAR_MAREAS_FTP_DIR}:/mareas_ftp
+        #   - ${SIGIMAR_DBBACKUPS_DIR}:/backups
+        #   - ${SIGIMAR_FTPGRAB_DIR}:/database
+    ports:
+      - 8000:80
+    restart: always
+    depends_on:
+      - db
+  client:
+    container_name: car_junker_client
+    build:
+      context: . 
+      dockerfile: docker/client/Dockerfile
+      args:
+        - http_proxy=${HTTP_PROXY}
+        - https_proxy=${HTTPS_PROXY}
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports:
+      - 5000:5000
+      # network_mode: host
+    restart: always
+    depends_on:
+      - "api"
+    volumes:
+      - ./client:/project
+      #   - ${SIGIMAR_MAREAS_FTP_DIR}:/mareas_ftp
+  db:
+    container_name: car_junker_db
+    image: postgis/postgis:12-2.5
+
+      # Database Environment Variables
+      # --------
+    ports:
+      - 5438:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres  # Leave this set to postgres
+    restart: always
