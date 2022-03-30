@@ -69,6 +69,10 @@ namespace api.Controllers
                     throw;
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            {
+                return Conflict();
+            }
 
             return NoContent();
         }
@@ -79,7 +83,14 @@ namespace api.Controllers
         public async Task<ActionResult<Make>> PostMake(Make make)
         {
             _context.Makes.Add(make);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            {
+                return Conflict();
+            }
 
             return CreatedAtAction("GetMake", new { id = make.ID }, make);
         }
