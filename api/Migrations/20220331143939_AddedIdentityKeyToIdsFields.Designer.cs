@@ -9,8 +9,8 @@ using api;
 namespace VehicleQuotes.Migrations
 {
     [DbContext(typeof(VehicleQuotesContext))]
-    [Migration("20220331133827_AddVehicleModelTables")]
-    partial class AddVehicleModelTables
+    [Migration("20220331143939_AddedIdentityKeyToIdsFields")]
+    partial class AddedIdentityKeyToIdsFields
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,6 +86,10 @@ namespace VehicleQuotes.Migrations
                     b.HasIndex("MakeID")
                         .HasDatabaseName("ix_models_make_id");
 
+                    b.HasIndex("Name", "MakeID")
+                        .IsUnique()
+                        .HasDatabaseName("ix_models_name_make_id");
+
                     b.ToTable("models");
                 });
 
@@ -115,11 +119,12 @@ namespace VehicleQuotes.Migrations
                     b.HasIndex("BodyTypeID")
                         .HasDatabaseName("ix_model_styles_body_type_id");
 
-                    b.HasIndex("ModelID")
-                        .HasDatabaseName("ix_model_styles_model_id");
-
                     b.HasIndex("SizeID")
                         .HasDatabaseName("ix_model_styles_size_id");
+
+                    b.HasIndex("ModelID", "BodyTypeID", "SizeID")
+                        .IsUnique()
+                        .HasDatabaseName("ix_model_styles_model_id_body_type_id_size_id");
 
                     b.ToTable("model_styles");
                 });
@@ -145,6 +150,10 @@ namespace VehicleQuotes.Migrations
 
                     b.HasIndex("ModelStyleID")
                         .HasDatabaseName("ix_model_style_years_model_style_id");
+
+                    b.HasIndex("Year", "ModelStyleID")
+                        .IsUnique()
+                        .HasDatabaseName("ix_model_style_years_year_model_style_id");
 
                     b.ToTable("model_style_years");
                 });
