@@ -131,6 +131,9 @@ namespace VehicleQuotes.Controllers
         // POST: api/Models
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult<Model>> PostModel([FromRoute] int makeId, ModelSpecification model)
         {
             // First, try to find the make specified by the incoming `makeId`.
