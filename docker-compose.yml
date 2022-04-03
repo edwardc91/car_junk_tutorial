@@ -42,7 +42,7 @@ services:
         - https_proxy=${HTTPS_PROXY}
     command: /bin/sh -c "while sleep 1000; do :; done"
     ports:
-      - 5000:5000
+      - 5000:3000
       # network_mode: host
     restart: always
     depends_on:
