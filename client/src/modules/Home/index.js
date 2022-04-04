@@ -15,14 +15,14 @@ const Home = () => {
     <>
       <Layout>
         <Header>
-
+          <div>Logo</div>
         </Header>
         <Layout>
           <Sider>
             <Navbar />
           </Sider>
           <Layout>
-            <Content>
+            <Content style={{ margin: "2%"}}>
               {currentNavMenu === "makes" ?
                 "Makes"
                 : currentNavMenu === "models" ?

@@ -26,7 +26,7 @@ const Navbar = () => {
           onClick={handleOnClick}
       >
           <Item key="home">
-              <a href="">Home</a>
+             Home
           </Item>
           <SubMenu key="data" title={<span>Data</span>}>
               <Item key="makes">Makes</Item>
@@ -35,13 +35,13 @@ const Navbar = () => {
               <Item key="body">Body Types</Item>
           </SubMenu>
           <Item key="about">
-              <a href="">About Us</a>
+            About Us
           </Item>
-          <Item key="mail">
-            <a href="">Signin</a>
+          <Item key="signin">
+           Signin
           </Item>
-          <Item key="app">
-            <a href="">Signup</a>
+          <Item key="signup">
+            Signup
           </Item>
       </Menu>
   )
