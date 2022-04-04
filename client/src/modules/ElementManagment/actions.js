@@ -21,6 +21,8 @@ export const EDIT_ELEMENT = 'EDIT_ELEMENT'
 export const SUCCESS_EDIT_ELEMENT = 'SUCCESS_EDIT_ELEMENT'
 export const ERROR_EDIT_ELEMENT = 'ERROR_EDIT_ELEMENT'
 
+export const TOOGLE_ELEMENTS_LIST_LOADER = 'TOOGLE_ELEMENTS_LIST_LOADER'
+
 //actions
 export const fetchElementsData = elementType => action(FETCH_ELEMENTS_DATA, { elementType })
 export const successFetchElementsData = ( elementsData ) => action(SUCCESS_FETCH_ELEMENTS_DATA, { elementsData })
@@ -41,3 +43,5 @@ export const errorDeleteElement = error => action(ERROR_DELETE_ELEMENT, { error 
 export const editElement = ( elementData, elementType, id ) => action(EDIT_ELEMENT, { elementData, elementType, id })
 export const successEditElement = ( elementData ) => action(SUCCESS_EDIT_ELEMENT, { elementData })
 export const errorEditElement = error => action(ERROR_EDIT_ELEMENT, { error })
+
+export const toogleElementsListLoader = ( flag ) => action(TOOGLE_ELEMENTS_LIST_LOADER, { flag })
