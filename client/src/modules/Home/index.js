@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Layout } from 'antd'
 
 import Navbar from "../../components/Navbar";
+import CenterSpin from '../../components/CenterSpin';
 
 const { Header, Content, Sider } = Layout;
 
@@ -34,7 +35,7 @@ const Home = () => {
                       : currentNavMenu === "about" ?
                         "About"
                         :
-                        "Home"
+                        <CenterSpin/>
               }
             </Content>
           </Layout>
