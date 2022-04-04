@@ -12,7 +12,7 @@ const App = () => {
     <BrowserRouter history={history}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/" element={<Home />}/>
         </Routes>
       </Suspense>
     </BrowserRouter>
