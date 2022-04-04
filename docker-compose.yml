@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  api:
+  net_api:
     container_name: car_junker_api
     build:
       context: . 
@@ -43,7 +43,7 @@ services:
       # network_mode: host
     restart: always
     depends_on:
-      - "api"
+      - "net_api"
     volumes:
       - ./client:/project
   db:
