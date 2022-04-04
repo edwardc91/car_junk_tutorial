@@ -1,16 +1,30 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux'
+
 import {  Menu  } from 'antd';
 
-const { SubMenu, Item } = Menu;
+import * as actions from './actions'
+
+const SubMenu = Menu.SubMenu;
+const Item = Menu.Item;
+
 
 
 const Navbar = () => {
+  const currentKey = useSelector(state => state.navbar.currentKey)
+
+  const handleOnClick = e => {
+    dispatch(({ type: actions.SET_NAV_MENU, payload: { menuKey: e.key } }))
+  }
+
+  const dispatch = useDispatch()
 
   return (
     <Menu 
         theme="dark" 
         mode="horizontal" 
-        selectedKeys={['makes']}
+        selectedKeys={[currentKey]}
+        onClick={handleOnClick}
       >
         <SubMenu key="data" title="Data Managment">
           <Item key="makes">Makes</Item>

@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
-export const mainReducer = combineReducers({
+import navbar from '../../components/Navbar/reducer'
 
+export const mainReducer = combineReducers({
+    navbar,
 });
