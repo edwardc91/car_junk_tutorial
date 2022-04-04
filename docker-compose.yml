@@ -22,9 +22,6 @@ services:
         /bin/sh -c "while sleep 1000; do :; done"
     volumes:
         - ./api:/project
-        #   - ${SIGIMAR_MAREAS_FTP_DIR}:/mareas_ftp
-        #   - ${SIGIMAR_DBBACKUPS_DIR}:/backups
-        #   - ${SIGIMAR_FTPGRAB_DIR}:/database
     ports:
       - 8000:80
     restart: always
@@ -49,7 +46,6 @@ services:
       - "api"
     volumes:
       - ./client:/project
-      #   - ${SIGIMAR_MAREAS_FTP_DIR}:/mareas_ftp
   db:
     container_name: car_junker_db
     image: postgis/postgis:12-2.5

@@ -1,14 +1,45 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Layout } from 'antd'
 
 import Navbar from "../../components/Navbar";
 
-const { Header, Content } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const Home = () => {
+
+  const currentNavMenu = useSelector(state => state.navbar.currentKey)
+
   return (
     <>
-      <Navbar/>
+      <Layout>
+        <Header>
+
+        </Header>
+        <Layout>
+          <Sider>
+            <Navbar />
+          </Sider>
+          <Layout>
+            <Content>
+              {currentNavMenu === "makes" ?
+                "Makes"
+                : currentNavMenu === "models" ?
+                  "Models"
+                  : currentNavMenu === "sizes" ?
+                    "Sizes"
+                    : currentNavMenu === "bodys" ?
+                      "Bodys"
+                      : currentNavMenu === "about" ?
+                        "About"
+                        :
+                        "Home"
+              }
+            </Content>
+          </Layout>
+        </Layout>
+      </Layout>
     </>
   );
 };
