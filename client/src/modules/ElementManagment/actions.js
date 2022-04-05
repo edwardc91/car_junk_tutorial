@@ -22,6 +22,7 @@ export const SUCCESS_EDIT_ELEMENT = 'SUCCESS_EDIT_ELEMENT'
 export const ERROR_EDIT_ELEMENT = 'ERROR_EDIT_ELEMENT'
 
 export const TOOGLE_ELEMENTS_LIST_LOADER = 'TOOGLE_ELEMENTS_LIST_LOADER'
+export const TOOGLE_ELEMENT_LOADER = 'TOOGLE_ELEMENT_LOADER'
 
 //actions
 export const fetchElementsData = elementType => action(FETCH_ELEMENTS_DATA, { elementType })
@@ -37,7 +38,7 @@ export const successCreateElement = ( elementData ) => action(SUCCESS_CREATE_ELE
 export const errorCreateElement = error => action(ERROR_CREATE_ELEMENT, { error })
 
 export const deleteElement = ( id, elementType ) => action(DELETE_ELEMENT, { id, elementType })
-export const successDeleteElement = ( message ) => action(SUCCESS_DELETE_ELEMENT, { message })
+export const successDeleteElement = ( id ) => action(SUCCESS_DELETE_ELEMENT, { id })
 export const errorDeleteElement = error => action(ERROR_DELETE_ELEMENT, { error })
 
 export const editElement = ( elementData, elementType, id ) => action(EDIT_ELEMENT, { elementData, elementType, id })
@@ -45,3 +46,4 @@ export const successEditElement = ( elementData ) => action(SUCCESS_EDIT_ELEMENT
 export const errorEditElement = error => action(ERROR_EDIT_ELEMENT, { error })
 
 export const toogleElementsListLoader = ( flag ) => action(TOOGLE_ELEMENTS_LIST_LOADER, { flag })
+export const toogleElementLoader = ( flag ) => action(TOOGLE_ELEMENT_LOADER, { flag })

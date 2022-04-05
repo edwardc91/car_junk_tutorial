@@ -6,5 +6,7 @@ export function* mainSaga() {
   yield all([
     // watchers element managment
     watchersElementManagment.fetchElementsDataWatcher(),
+    watchersElementManagment.fetchElementDataWatcher(),
+    watchersElementManagment.deleteElementWatcher(),
   ]);
 }
