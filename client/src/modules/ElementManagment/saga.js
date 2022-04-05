@@ -24,6 +24,7 @@ import * as actions from './actions'
 import {
     getAllMakesService,
     getAllSizesService,
+    getAllBodysService,
     getMakeService,
     getSizeService,
     deleteMakeService,
@@ -38,11 +39,15 @@ export function* getElementsData(action) {
     try {
         yield put(toogleElementsListLoader(true))
         
-        var result = {}
+        var result = null
         switch (action.payload.elementType){
-            case "makes":
-                result = yield call(getAllMakesService)
+            case "body":
+                result = yield call(getAllBodysService)
+                break
             case "sizes":
+                result = yield call(getAllSizesService)
+                break
+            default:
                 result = yield call(getAllSizesService)
         }
 
@@ -50,10 +55,13 @@ export function* getElementsData(action) {
         yield put(toogleElementsListLoader(false))
 
     } catch (err) {
-        error = err.response.data
+        if (err.response.data){
+            console.log(err.response.data)
+            const error = err.response.data
 
-        yield put(toogleElementsListLoader(false))
-        yield put(errorFetchElementsData(error))
+            yield put(toogleElementsListLoader(false))
+            yield put(errorFetchElementsData(error))
+        }
     }
 }
 
@@ -74,7 +82,7 @@ export function* getElementData(action) {
         yield put(toogleElementLoader(false))
 
     } catch (err) {
-        error = err.response.data
+        const error = err.response.data
 
         yield put(toogleElementLoader(false))
         yield put(errorFetchElementData(error))
@@ -96,7 +104,7 @@ export function* deleteElement(action) {
         yield put(successDeleteElement(element_id))
 
     } catch (err) {
-        error = err.response.data
+        const error = err.response.data
 
         yield put(errorDeleteElement(error))
     }
