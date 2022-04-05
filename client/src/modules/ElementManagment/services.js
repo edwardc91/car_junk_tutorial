@@ -92,7 +92,7 @@ export const addSizeService = async data => {
 };
 
 
-export const getSizesService = async id => {
+export const getSizeService = async id => {
     var response = await axios({
         method: "get",
         url: `${REACT_APP_API_URI}/Sizes/${id}`
@@ -104,7 +104,7 @@ export const getSizesService = async id => {
     }
 };
 
-export const updateSizesService = async (id, data) => {
+export const updateSizeService = async (id, data) => {
     var response = await axios({
         method: "put",
         url: `${REACT_APP_API_URI}/Sizes/${id}`,
@@ -117,7 +117,7 @@ export const updateSizesService = async (id, data) => {
     }
 };
 
-export const deleteSizesService = async id => {
+export const deleteSizeService = async id => {
     var response = await axios({
         method: "delete",
         url: `${REACT_APP_API_URI}/Sizes/${id}`
