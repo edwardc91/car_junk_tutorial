@@ -1,7 +1,7 @@
 import * as actions from './actions'
 
 const initialState = {
-  currentKey: "makes",
+  currentKey: "sizes",
 }
 
 const navbar = (state = initialState, action) => {

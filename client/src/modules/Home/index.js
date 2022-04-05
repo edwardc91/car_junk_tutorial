@@ -5,6 +5,7 @@ import { Layout } from 'antd'
 
 import Navbar from "../../components/Navbar";
 import CenterSpin from '../../components/CenterSpin';
+import ElementManagment from '../ElementManagment';
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,19 +25,7 @@ const Home = () => {
           </Sider>
           <Layout>
             <Content style={{ margin: "2%"}}>
-              {currentNavMenu === "makes" ?
-                "Makes"
-                : currentNavMenu === "models" ?
-                  "Models"
-                  : currentNavMenu === "sizes" ?
-                    "Sizes"
-                    : currentNavMenu === "bodys" ?
-                      "Bodys"
-                      : currentNavMenu === "about" ?
-                        "About"
-                        :
-                        <CenterSpin/>
-              }
+              <ElementManagment/>
             </Content>
           </Layout>
         </Layout>

@@ -1,5 +1,7 @@
 const axios = require("axios");
-REACT_APP_API_URI = process.env.REACT_APP_DEV_API_URL
+const REACT_APP_API_URI = process.env.REACT_APP_DEV_API_URL
+
+axios.defaults.headers.common["Content-Type"] = "application/json";
 
 //! Makes
 export const getAllMakesService = async () => {
@@ -69,9 +71,10 @@ export const deleteMakeService = async id => {
 export const getAllSizesService = async () => {
     var response = await axios({
         method: "get",
-        url: `${REACT_APP_API_URI}/Siizes`
+        url: `${REACT_APP_API_URI}/Sizes`
     });
 
+    console.log(response)
     if (response && response.status === 200) {
         let data = await response.data;
         return data
@@ -121,6 +124,18 @@ export const deleteSizeService = async id => {
     var response = await axios({
         method: "delete",
         url: `${REACT_APP_API_URI}/Sizes/${id}`
+    });
+
+    if (response && response.status === 200) {
+        let data = await response.data;
+        return data
+    }
+};
+
+export const getAllBodysService = async () => {
+    var response = await axios({
+        method: "get",
+        url: `${REACT_APP_API_URI}/BodyTypes`
     });
 
     if (response && response.status === 200) {
